@@ -40,6 +40,12 @@ steps
 15. install lodash in server directory.
 16. return book from resolve method
 17. use graphiql in app.use in app.js file
-
+18. Configure root query
+19. Adding relationship for book, find author of a book
+20. Adding relationship for author, find books for this author, one to many relations
+21. adding query fields for books and authors, find all books and authors
+22. Install mongoose and setup mongodb database connection
+23. Add schema of book and author models for mongodb database
+24. Create mutation for author and book
 
 */
