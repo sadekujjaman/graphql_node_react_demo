@@ -14,12 +14,12 @@ const {
 } = graphql
 
 var books = [
-    {name: 'Brazen and the Beast', genre:'Romance', id:'1'},
-    {name: 'Where the Crawdads Sing', genre:'Literary Fiction', id:'2'},
-    {name: 'The Haunting of Hill House', genre:'Horror', id:'3'},
-    {name: 'The Water Dancer', genre:'Fantasy', id:'4'},
-    {name: 'WICKED AND THE WALLFLOWER', genre:'Romance', id:'5'},
-    {name: 'DARING AND THE DUKE', genre:'Romance', id:'6'},
+    {name: 'Brazen and the Beast', genre:'Romance', id:'1', authorId: '2'},
+    {name: 'Where the Crawdads Sing', genre:'Literary Fiction', id:'2', authorId: '3'},
+    {name: 'The Haunting of Hill House', genre:'Horror', id:'3', authorId: '4'},
+    {name: 'The Water Dancer', genre:'Fantasy', id:'4', authorId:'1'},
+    {name: 'WICKED AND THE WALLFLOWER', genre:'Romance', id:'5', authorId:'2'},
+    {name: 'DARING AND THE DUKE', genre:'Romance', id:'6', authorId:'2'},
     
 ]
 
@@ -38,7 +38,13 @@ const BookType = new GraphQLObjectType({
     fields: () => ({
         id:{type:GraphQLID},
         name:{type:GraphQLString},
-        genre:{type:GraphQLString}
+        genre:{type:GraphQLString},
+        author:{
+            type: AuthorType,
+            resolve(parent, args){
+                return _.find(authors, {id:parent.authorId})
+            }
+        }
     })
 })
 
