@@ -47,5 +47,8 @@ steps
 22. Install mongoose and setup mongodb database connection
 23. Add schema of book and author models for mongodb database
 24. Create mutation for author and book
+25. Update resolve method for each query and object type to return data 
+    from database instead of dummy data
+26. Handling NonNull data in mutation.
 
 */

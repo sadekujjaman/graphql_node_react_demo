@@ -12,6 +12,7 @@ const {
     GraphQLID,
     GraphQLInt,
     GraphQLList,
+    GraphQLNonNull,
 
 
 } = graphql
@@ -116,8 +117,8 @@ const Mutation = new GraphQLObjectType({
         addAuthor:{
             type:AuthorType,
             args:{
-                name:{type:GraphQLString},
-                age:{type:GraphQLInt}
+                name:{type: new GraphQLNonNull(GraphQLString)},
+                age:{type: new GraphQLNonNull(GraphQLInt)}
             },
             resolve(parent, args){
                 let author = new Author({
@@ -130,9 +131,9 @@ const Mutation = new GraphQLObjectType({
         addBook:{
             type:BookType,
             args:{
-                name:{type:GraphQLString},
-                genre:{type:GraphQLString},
-                authorId:{type:GraphQLID}
+                name:{type: new GraphQLNonNull(GraphQLString)},
+                genre:{type: new GraphQLNonNull(GraphQLString)},
+                authorId:{type: new GraphQLNonNull(GraphQLID)}
             },
             resolve(parent, args){
                 let book = new Book({
