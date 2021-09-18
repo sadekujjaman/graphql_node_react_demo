@@ -1,24 +1,34 @@
-const express = require('express')
-const {graphqlHTTP} = require('express-graphql')
-const schema = require('./schema/schema')
-const mongoose = require('mongoose')
+const express = require("express");
+const { graphqlHTTP } = require("express-graphql");
+const schema = require("./schema/schema");
+const mongoose = require("mongoose");
+const db_config = require("./db.config");
 
-mongoose.connect('mongodb+srv://testuser:testuser@graphql-demo.cew73.mongodb.net/graphql-demo')
-mongoose.connection.once('open', () => {
-    console.log("Connected to mongodb database")
-})
+const db = db_config.database;
+const db_uri =
+  "mongodb+srv://" +
+  db.user +
+  ":" +
+  db.password +
+  "@graphql-demo.cew73.mongodb.net/graphql-demo";
+mongoose.connect(db_uri);
+mongoose.connection.once("open", () => {
+  console.log("Connected to mongodb database");
+});
 
+const app = express();
 
-const app = express()
-
-app.use('/graphql', graphqlHTTP({
-schema,
-graphiql:true
-}));
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+  })
+);
 
 app.listen(3000, () => {
-    console.log("Express listening port number 3000")
-})
+  console.log("Express listening port number 3000");
+});
 
 /*
 
