@@ -60,5 +60,6 @@ steps
 25. Update resolve method for each query and object type to return data 
     from database instead of dummy data
 26. Handling NonNull data in mutation.
+27. Create react app in client directory
 
 */
